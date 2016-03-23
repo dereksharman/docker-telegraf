@@ -1,0 +1,34 @@
+telegrafInfluxDB:
+  image: "${DOCKER_BUILD_REGISTRY}/telegraf-influxdb:${DOCKER_BUILD_TAG}"
+  environment:
+    TELEGRAF_COLLECTION_INTERVAL: "10s"
+    TELEGRAF_HOSTNAME: "dev-host"
+    TELEGRAF_DOCKER_ENDPOINT: "tcp://${DEV_HOST_IP}:2376"
+    TELEGRAF_DOCKER_TLS_ENABLED: "true"
+    TELEGRAF_DOCKER_TLS_CA: "/opt/telegraf/certs/ca.pem"
+    TELEGRAF_DOCKER_TLS_CERT: "/opt/telegraf/certs/cert.pem"
+    TELEGRAF_DOCKER_TLS_KEY: "/opt/telegraf/certs/key.pem"
+    TELEGRAF_DOCKER_CONTAINERS: ""
+    TELEGRAF_INFLUXDB_URLS: "\"http://${DEV_HOST_IP}:8086\""
+    TELEGRAF_INFLUXDB_DATABASE: "telegrafdb"
+  volumes:
+    - "${DOCKER_CERT_PATH}:/opt/telegraf/certs:ro"
+  restart: "never"
+
+telegrafKafka:
+  image: "${DOCKER_BUILD_REGISTRY}/telegraf-kafka:${DOCKER_BUILD_TAG}"
+  environment:
+    TELEGRAF_COLLECTION_INTERVAL: "10s"
+    TELEGRAF_HOSTNAME: "dev-host"
+    TELEGRAF_DOCKER_ENDPOINT: "tcp://${DEV_HOST_IP}:2376"
+    TELEGRAF_DOCKER_TLS_ENABLED: "true"
+    TELEGRAF_DOCKER_TLS_CA: "/opt/telegraf/certs/ca.pem"
+    TELEGRAF_DOCKER_TLS_CERT: "/opt/telegraf/certs/cert.pem"
+    TELEGRAF_DOCKER_TLS_KEY: "/opt/telegraf/certs/key.pem"
+    TELEGRAF_DOCKER_CONTAINERS: ""
+    TELEGRAF_KAFKA_BROKERS: "\"${DEV_HOST_IP}:9092\""
+    TELEGRAF_KAFKA_TOPIC: "telegraf"
+    TELEGRAF_KAFKA_TAG: ""
+  volumes:
+    - "${DOCKER_CERT_PATH}:/opt/telegraf/certs:ro"
+  restart: "never"

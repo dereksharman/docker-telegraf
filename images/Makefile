@@ -1,6 +1,7 @@
 images := \
 	base \
-	influxdb
+	influxdb \
+	kafka
 
 build build : $(images)
 push push : $(images)
