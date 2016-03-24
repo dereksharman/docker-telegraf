@@ -1,11 +1,13 @@
 #!/usr/bin/env bash
 set -e
 
+TELEGRAF_CONFIG_PATH=$1
+
 if [ -z "$TELEGRAF_COLLECTION_INTERVAL" ]; then
     TELEGRAF_COLLECTION_INTERVAL=1m
 fi
 
-cat <<EOT > $TELEGRAF_CONFIG_FILE
+cat <<EOT > $TELEGRAF_CONFIG_PATH
 
 [agent]
 

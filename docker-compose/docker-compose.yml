@@ -38,7 +38,7 @@ telegrafKafka:
 telegrafExternalConfig:
   image: "${DOCKER_BUILD_REGISTRY}/telegraf:${DOCKER_BUILD_TAG}"
   environment:
-    TELEGRAF_EXTERNAL_CONFIG: "/opt/telegraf/telegraf.conf"
+    TELEGRAF_CONFIG_PATH: "/opt/telegraf/telegraf.conf"
   volumes:
     - "${DOCKER_CERT_PATH}:/opt/telegraf/certs:ro"
     - "./telegraf.conf:/opt/telegraf/telegraf.conf:ro"

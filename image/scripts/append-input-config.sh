@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+TELEGRAF_CONFIG_PATH=$1
+
 if [ -z "$TELEGRAF_DOCKER_ENDPOINT" ]; then
     echo "TELEGRAF_DOCKER_ENDPOINT must be configured"
     exit 254
@@ -10,7 +12,7 @@ if [ -z "$TELEGRAF_DOCKER_TLS_ENABLED" ]; then
     TELEGRAF_DOCKER_TLS_ENABLED=false
 fi
 
-cat <<EOT >> $TELEGRAF_CONFIG_FILE
+cat <<EOT >> $TELEGRAF_CONFIG_PATH
 
 [[inputs.docker]]
 

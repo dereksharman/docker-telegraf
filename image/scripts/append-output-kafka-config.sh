@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+TELEGRAF_CONFIG_PATH=$1
+
 if [ -z "$TELEGRAF_KAFKA_BROKERS" ]; then
     echo "TELEGRAF_KAFKA_BROKERS must be configured"
     exit 254
@@ -10,7 +12,7 @@ if [ -z "$TELEGRAF_KAFKA_TOPIC" ]; then
     TELEGRAF_KAFKA_TOPIC=telegraf
 fi
 
-cat <<EOT >> $TELEGRAF_CONFIG_FILE
+cat <<EOT >> $TELEGRAF_CONFIG_PATH
 
 [[outputs.kafka]]
 

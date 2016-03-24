@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -e
 
+TELEGRAF_CONFIG_PATH=$1
+
 if [ -z "$TELEGRAF_INFLUXDB_URLS" ]; then
     echo "TELEGRAF_INFLUXDB_URLS must be configured"
     exit 254
@@ -10,7 +12,7 @@ if [ -z "$TELEGRAF_INFLUXDB_DATABASE" ]; then
     TELEGRAF_INFLUXDB_DATABASE=telegraf
 fi
 
-cat <<EOT >> $TELEGRAF_CONFIG_FILE
+cat <<EOT >> $TELEGRAF_CONFIG_PATH
 
 [[outputs.influxdb]]
 
