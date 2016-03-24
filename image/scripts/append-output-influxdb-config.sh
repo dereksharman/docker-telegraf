@@ -13,10 +13,25 @@ fi
 cat <<EOT >> $TELEGRAF_CONFIG_FILE
 
 [[outputs.influxdb]]
+
+  ## The full HTTP or UDP endpoint URL for your InfluxDB instance.
+  ## Multiple urls can be specified as part of the same cluster,
+  ## this means that only ONE of the urls will be written to each interval.
+  # urls = ["udp://localhost:8089"] # UDP endpoint example
   urls = [$TELEGRAF_INFLUXDB_URLS]
+
+  ## The target database for metrics (telegraf will create it if not exists).
   database = "$TELEGRAF_INFLUXDB_DATABASE"
+
+  ## Retention policy to write to.
   retention_policy = "default"
+
+  ## Precision of writes, valid values are "ns", "us" (or "µs"), "ms", "s", "m", "h".
+  ## note: using "s" precision greatly improves InfluxDB compression.
   precision = "s"
+
+  ## Write timeout (for the InfluxDB client), formatted as a string.
+  ## If not provided, will default to 5s. 0s means no timeout (not recommended).
   timeout = "5s"
 
   # username = "telegraf"

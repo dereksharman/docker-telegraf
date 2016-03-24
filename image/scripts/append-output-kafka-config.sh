@@ -13,6 +13,7 @@ fi
 cat <<EOT >> $TELEGRAF_CONFIG_FILE
 
 [[outputs.kafka]]
+
   ## URLs of kafka brokers
   brokers = [$TELEGRAF_KAFKA_BROKERS]
   ## Kafka topic for producer messages
