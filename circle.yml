@@ -1,0 +1,30 @@
+machine:
+    environment:
+        DOCKER_BUILD_REGISTRY: cantireinnovations
+        DOCKER_BUILD_TAG: $CIRCLE_SHA1
+    services:
+        - docker
+
+dependencies:
+    cache_directories:
+        - "~/cache"
+    override:
+        - circle/cache-docker-images.sh
+
+test:
+    override:
+        - make build
+
+deployment:
+
+    latest:
+        branch: master
+        owner: CanTireInnovations
+        commands:
+            - circle/deploy-master.sh
+
+    release:
+        tag: /v[0-9]+(\.[0-9]+)*/
+        owner: CanTireInnovations
+        commands:
+            - circle/deploy-release.sh
