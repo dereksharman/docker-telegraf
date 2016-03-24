@@ -3,8 +3,8 @@ set -e
 
 TELEGRAF_CONFIG_PATH=$1
 
-if [ -z "$TELEGRAF_KAFKA_BROKERS" ]; then
-    echo "TELEGRAF_KAFKA_BROKERS must be configured"
+if [ -z "$TELEGRAF_OUTPUTS_KAFKA_BROKERS" ]; then
+    echo "TELEGRAF_OUTPUTS_KAFKA_BROKERS must be configured"
     exit 254
 fi
 
@@ -17,12 +17,12 @@ cat <<EOT >> $TELEGRAF_CONFIG_PATH
 [[outputs.kafka]]
 
   ## URLs of kafka brokers
-  brokers = [$TELEGRAF_KAFKA_BROKERS]
+  brokers = [$TELEGRAF_OUTPUTS_KAFKA_BROKERS]
   ## Kafka topic for producer messages
-  topic = "$TELEGRAF_KAFKA_TOPIC"
+  topic = "$TELEGRAF_OUTPUTS_KAFKA_TOPIC"
   ## Telegraf tag to use as a routing key
   ##  ie, if this tag exists, it's value will be used as the routing key
-  routing_tag = "$TELEGRAF_KAFKA_TAG"
+  routing_tag = "$TELEGRAF_OUTPUTS_KAFKA_TAG"
 
   ## Optional SSL Config
   # ssl_ca = "/etc/telegraf/ca.pem"

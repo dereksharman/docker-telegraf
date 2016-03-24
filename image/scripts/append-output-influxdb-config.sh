@@ -3,13 +3,13 @@ set -e
 
 TELEGRAF_CONFIG_PATH=$1
 
-if [ -z "$TELEGRAF_INFLUXDB_URLS" ]; then
-    echo "TELEGRAF_INFLUXDB_URLS must be configured"
+if [ -z "$TELEGRAF_OUTPUTS_INFLUXDB_URLS" ]; then
+    echo "TELEGRAF_OUTPUTS_INFLUXDB_URLS must be configured"
     exit 254
 fi
 
-if [ -z "$TELEGRAF_INFLUXDB_DATABASE" ]; then
-    TELEGRAF_INFLUXDB_DATABASE=telegraf
+if [ -z "$TELEGRAF_OUTPUTS_INFLUXDB_DATABASE" ]; then
+    TELEGRAF_OUTPUTS_INFLUXDB_DATABASE=telegraf
 fi
 
 cat <<EOT >> $TELEGRAF_CONFIG_PATH
@@ -20,10 +20,10 @@ cat <<EOT >> $TELEGRAF_CONFIG_PATH
   ## Multiple urls can be specified as part of the same cluster,
   ## this means that only ONE of the urls will be written to each interval.
   # urls = ["udp://localhost:8089"] # UDP endpoint example
-  urls = [$TELEGRAF_INFLUXDB_URLS]
+  urls = [$TELEGRAF_OUTPUTS_INFLUXDB_URLS]
 
   ## The target database for metrics (telegraf will create it if not exists).
-  database = "$TELEGRAF_INFLUXDB_DATABASE"
+  database = "$TELEGRAF_OUTPUTS_INFLUXDB_DATABASE"
 
   ## Retention policy to write to.
   retention_policy = "default"

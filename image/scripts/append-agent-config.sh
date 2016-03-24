@@ -3,8 +3,8 @@ set -e
 
 TELEGRAF_CONFIG_PATH=$1
 
-if [ -z "$TELEGRAF_COLLECTION_INTERVAL" ]; then
-    TELEGRAF_COLLECTION_INTERVAL=1m
+if [ -z "$TELEGRAF_AGENT_INTERVAL" ]; then
+    TELEGRAF_AGENT_INTERVAL=1m
 fi
 
 cat <<EOT > $TELEGRAF_CONFIG_PATH
@@ -12,7 +12,7 @@ cat <<EOT > $TELEGRAF_CONFIG_PATH
 [agent]
 
   ## Default data collection interval for all inputs
-  interval = "$TELEGRAF_COLLECTION_INTERVAL"
+  interval = "$TELEGRAF_AGENT_INTERVAL"
 
   ## Rounds collection interval to 'interval'
   ## ie, if interval="10s" then always collect on :00, :10, :20, etc.
@@ -33,7 +33,7 @@ cat <<EOT > $TELEGRAF_CONFIG_PATH
 
   ## Default flushing interval for all outputs. You shouldn't set this below
   ## interval. Maximum flush_interval will be flush_interval + flush_jitter
-  flush_interval = "$TELEGRAF_COLLECTION_INTERVAL"
+  flush_interval = "$TELEGRAF_AGENT_INTERVAL"
 
   ## Jitter the flush interval by a random amount. This is primarily to avoid
   ## large write spikes for users running a large number of telegraf instances.
@@ -47,6 +47,6 @@ cat <<EOT > $TELEGRAF_CONFIG_PATH
   quiet = false
 
   ## Override default hostname, if empty use os.Hostname()
-  hostname = "$TELEGRAF_HOSTNAME"
+  hostname = "$TELEGRAF_AGENT_HOSTNAME"
 
 EOT

@@ -8,4 +8,4 @@ COPY scripts/ $TELEGRAF_PATH/
 
 WORKDIR $TELEGRAF_PATH
 
-CMD [ "./start-telegraf.sh" ]
+CMD [ "/opt/telegraf/start-telegraf.sh" ]

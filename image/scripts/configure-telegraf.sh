@@ -13,10 +13,10 @@ echo "Configuring telegraf..."
 $TELEGRAF_PATH/append-agent-config.sh $TELEGRAF_CONFIG_PATH
 $TELEGRAF_PATH/append-input-config.sh $TELEGRAF_CONFIG_PATH
 
-if [ "$TELEGRAF_INFLUXDB_OUTPUT_ENABLED" == "true" ]; then
+if [ "$TELEGRAF_OUTPUTS_INFLUXDB_ENABLED" == "true" ]; then
     $TELEGRAF_PATH/append-output-influxdb-config.sh $TELEGRAF_CONFIG_PATH
 fi
 
-if [ "$TELEGRAF_KAFKA_OUTPUT_ENABLED" == "true" ]; then
+if [ "$TELEGRAF_OUTPUTS_KAFKA_ENABLED" == "true" ]; then
     $TELEGRAF_PATH/append-output-kafka-config.sh $TELEGRAF_CONFIG_PATH
 fi
