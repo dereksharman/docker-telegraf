@@ -1,11 +1,3 @@
-ifndef DOCKER_BUILD_REGISTRY
-DOCKER_BUILD_REGISTRY=cantireinnovations
-endif
-
-ifndef DOCKER_BUILD_TAG
-DOCKER_BUILD_TAG=latest
-endif
-
 build :
 	docker build \
 		-t $(DOCKER_BUILD_REGISTRY)/telegraf:$(DOCKER_BUILD_TAG) \
