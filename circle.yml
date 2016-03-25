@@ -14,7 +14,7 @@ dependencies:
 test:
     override:
         - make build:
-          pwd: image
+            pwd: image
 
 deployment:
 
