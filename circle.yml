@@ -13,7 +13,8 @@ dependencies:
 
 test:
     override:
-        - make build
+        - make build:
+          pwd: image
 
 deployment:
 
