@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eu
 
-cd ../
+cd ../image
 
 docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD" -e no-reply@cantireinnovations.com
 
