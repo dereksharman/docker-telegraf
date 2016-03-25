@@ -3,12 +3,12 @@ set -e
 
 TELEGRAF_CONFIG_PATH=$1
 
+echo "Configuring telegraf..."
+
 cat <<EOT > $TELEGRAF_CONFIG_PATH
 # Telegraf configuration
 
 EOT
-
-echo "Configuring telegraf..."
 
 $TELEGRAF_PATH/append-agent-config.sh $TELEGRAF_CONFIG_PATH
 $TELEGRAF_PATH/append-input-config.sh $TELEGRAF_CONFIG_PATH

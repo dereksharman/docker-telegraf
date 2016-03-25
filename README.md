@@ -1,13 +1,17 @@
 # docker-telegraf
-Docker image for Telegraf to collect metrics from Docker host and report them to InfluxDB or Kafka
+Docker image for [Telegraf](https://github.com/influxdata/telegraf) to collect metrics from [Docker](https://www.docker.com) host and report them to [InfluxDB](https://influxdata.com) or [Kafka](http://kafka.apache.org)
 
 ## Environment Variables
 
-### Agent:
+### General
 ```
-TELEGRAF_AGENT_INTERVAL:                The URL of the Docker host                      Optional
-TELEGRAF_AGENT_HOSTNAME:	            Hostname                                        Optional
-TELEGRAF_CONFIG_PATH:                   Predefined config to use                        Optional
+TELEGRAF_CONFIG_PATH:                   Predefined config to use (all other variables will not have any effect)
+```
+
+### Agent
+```
+TELEGRAF_AGENT_INTERVAL:                Default data collection interval                Optional (1m if not defined)
+TELEGRAF_AGENT_HOSTNAME:	            Hostname                                        Optional (system hostname if not defined)
 ```
 
 ### Docker
@@ -23,7 +27,7 @@ TELEGRAF_INPUTS_DOCKER_CONTAINERS:      Only collect metrics for these container
 ### InfluxDB
 ```
 TELEGRAF_OUTPUTS_INFLUXDB_ENABLED:      Enables InfluxDB output                         Optional
-TELEGRAF_OUTPUTS_INFLUXDB_URLS:         The endpoint for the InfluxDB instance          Optional (required if InfluxDB output enabled)
+TELEGRAF_OUTPUTS_INFLUXDB_URLS:         Endpoint(s) for InfluxDB instance(s)            Optional (required if InfluxDB output enabled)
 TELEGRAF_OUTPUTS_INFLUXDB_DATABASE:     The target database for metrics                 Optional (required if InfluxDB output enabled)
 ```
 
@@ -31,6 +35,6 @@ TELEGRAF_OUTPUTS_INFLUXDB_DATABASE:     The target database for metrics         
 ```
 TELEGRAF_OUTPUTS_KAFKA_ENABLED:         Enables Kafka output                            Optional
 TELEGRAF_OUTPUTS_KAFKA_BROKERS:         URLs of Kafka brokers                           Optional (required if InfluxDB output enabled)
-TELEGRAF_OUTPUTS_KAFKA_TOPIC:           Kafka topic for producer messages               Optional (required if InfluxDB output enabled)
-TELEGRAF_OUTPUTS_KAFKA_TAG:             Telegraf tag to use as a routing key            Optional (required if InfluxDB output enabled)
+TELEGRAF_OUTPUTS_KAFKA_TOPIC:           Kafka topic for messages                        Optional (required if InfluxDB output enabled)
+TELEGRAF_OUTPUTS_KAFKA_TAG:             Telegraf tag to use as a routing key            Optional
 ```
